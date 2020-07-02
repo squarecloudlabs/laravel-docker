@@ -1,4 +1,4 @@
-image: lorisleiva/laravel-docker:latest
+image: squarecloudlabs/laravel-docker:latest
 
 cache:
   key: ${CI_COMMIT_REF_SLUG}
@@ -10,7 +10,7 @@ codestyle:
   cache: {}
   script:
     - phpcs --standard=PSR2 --extensions=php app
-    
+
 phpunit:
   stage: test
   script:

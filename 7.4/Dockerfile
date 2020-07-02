@@ -66,7 +66,9 @@ RUN docker-php-ext-install \
     pcntl \
     tokenizer \
     xml \
-    zip
+    zip \
+    && pecl install mailparse \
+    && docker-php-ext-enable mailparse
 
 # Install composer
 ENV COMPOSER_HOME /composer

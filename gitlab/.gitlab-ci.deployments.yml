@@ -1,4 +1,4 @@
-image: lorisleiva/laravel-docker:latest
+image: squarecloudlabs/laravel-docker:latest
 
 .init_ssh: &init_ssh |
   eval $(ssh-agent -s)
@@ -12,11 +12,11 @@ image: lorisleiva/laravel-docker:latest
 #
 #  ssh-keyscan yourdomain.com >> ~/.ssh/known_hosts
 #  chmod 644 ~/.ssh/known_hosts
-  
+
 .change_file_permissions: &change_file_permissions |
-  find . -type f -not -path "./vendor/*" -exec chmod 664 {} \;    
+  find . -type f -not -path "./vendor/*" -exec chmod 664 {} \;
   find . -type d -not -path "./vendor/*" -exec chmod 775 {} \;
-    
+
 composer:
   stage: build
   cache:
@@ -54,7 +54,7 @@ codestyle:
   dependencies: []
   script:
     - phpcs --standard=PSR2 --extensions=php --ignore=app/Support/helpers.php app
-    
+
 phpunit:
   stage: test
   dependencies:
@@ -73,7 +73,7 @@ staging:
     url: http://dev.yourdomain.com
   only:
     - master
-  
+
 production:
   stage: deploy
   script:
